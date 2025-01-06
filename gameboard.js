@@ -10,14 +10,14 @@ const gameboard = (function () {
     const $cells = document.querySelectorAll('.cell');
 
     //renders
-    const render = () => $cells.forEach(displayCells);
+    function render() { $cells.forEach(displayCells) };
 
-    const displayCells = function (cell) {
+    function displayCells(cell) {
         const dataIndex = cell.getAttribute('data-index').split(',');
         cell.innerText = gameboard[dataIndex[0]][dataIndex[1]];
     };
 
-    const setCells = function (targetX, targetY, mark) {
+    function setCells(targetX, targetY, mark) {
         gameboard[targetX][targetY] = mark;
         render();
     }
