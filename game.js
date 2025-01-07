@@ -13,15 +13,14 @@
 
     //binding
     $cells.forEach((cell) => cell.addEventListener('click', iAmClicked));
-
     $resetBtn.addEventListener('click', resetGame);
 
     function iAmClicked(e) {
         updateGameBoard(e);
         togglePlayer();
         updateMessage();
+        e.target.disabled = true;
     }
-
 
     function updateGameBoard(e) {
         const [targetX, targetY] = [...e.target.getAttribute('data-index').split(',')];
@@ -39,8 +38,12 @@
 
     function resetGame() {
         gameboard.resetBoard();
-        togglePlayer();
         updateMessage();
+        enableAllBtn();
+    }
+
+    function enableAllBtn() {
+        $cells.forEach((cell) => cell.disabled = false);
     }
 
     updateMessage();
