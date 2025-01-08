@@ -27,6 +27,13 @@ const Observer = (function () {
 const eventBinder = (function () {
 
     const $resetBtn = document.querySelector('.resetBtn');
+    $resetBtn.addEventListener('click', () => Observer.emit('resetClicked'));
 
-    $resetBtn.addEventListener('click', () => Observer.emit('resetBtnClicked'));
+    const $cells = document.querySelectorAll('.cell');
+    $cells.forEach((cell) => cell.addEventListener('click',
+        function (e) {
+            const [targetX, targetY] = [...e.target.getAttribute('data-index').split(',')];
+            Observer.emit('cellClicked', { targetX, targetY, cell: e.target });
+        }
+    ));
 })();
