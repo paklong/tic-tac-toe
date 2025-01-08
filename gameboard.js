@@ -30,8 +30,10 @@ const gameboard = (function () {
         }
     }
 
+    Observer.connect('resetBtnClicked', resetBoard);
+
     return {
-        setCells, resetBoard
+        setCells
     }
 
 })();

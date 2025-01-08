@@ -13,7 +13,7 @@
 
     //binding
     $cells.forEach((cell) => cell.addEventListener('click', iAmClicked));
-    $resetBtn.addEventListener('click', resetGame);
+    $resetBtn.addEventListener('click', () => Observer.emit('resetBtnClicked'));
 
     function iAmClicked(e) {
         updateGameBoard(e);
