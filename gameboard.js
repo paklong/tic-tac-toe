@@ -9,8 +9,12 @@ const gameboard = (function () {
     //cache dom
     const $cells = document.querySelectorAll('.cell');
 
+    //binding
+    Observer.connect('resetClicked', resetBoard);
+
     //renders
     function render() { $cells.forEach(displayCells) }
+
 
     function displayCells(cell) {
         const dataIndex = cell.getAttribute('data-index').split(',');
@@ -29,8 +33,6 @@ const gameboard = (function () {
             }
         }
     }
-
-    Observer.connect('resetBtnClicked', resetBoard);
 
     return {
         setCells

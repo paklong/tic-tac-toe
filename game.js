@@ -11,19 +11,16 @@
     const $message = document.querySelector('.message');
 
     //binding
-    $cells.forEach((cell) => cell.addEventListener('click', iAmClicked));
+    Observer.connect('cellClicked', updateGameBoard);
+    Observer.connect('resetClicked', resetGame);
 
-    function iAmClicked(e) {
-        updateGameBoard(e);
-        togglePlayer();
-        updateMessage();
-        e.target.disabled = true;
-    }
 
-    function updateGameBoard(e) {
-        const [targetX, targetY] = [...e.target.getAttribute('data-index').split(',')];
+    function updateGameBoard({ targetX, targetY, cell }) {
         const mark = player[whoIsTheTurnNow].getMark();
         gameboard.setCells(targetX, targetY, mark);
+        togglePlayer();
+        updateMessage();
+        cell.disabled = true;
     }
 
     function updateMessage() {
@@ -43,7 +40,7 @@
         $cells.forEach((cell) => cell.disabled = false);
     }
 
-    Observer.connect('resetBtnClicked', resetGame);
+
     updateMessage();
 
 })();
