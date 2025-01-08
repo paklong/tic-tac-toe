@@ -32,7 +32,6 @@
     }
 
     function resetGame() {
-        updateMessage();
         enableAllBtn();
     }
 
