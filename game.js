@@ -9,11 +9,9 @@
     //cache dom
     const $cells = document.querySelectorAll('.cell');
     const $message = document.querySelector('.message');
-    const $resetBtn = document.querySelector('.resetBtn');
 
     //binding
     $cells.forEach((cell) => cell.addEventListener('click', iAmClicked));
-    $resetBtn.addEventListener('click', () => Observer.emit('resetBtnClicked'));
 
     function iAmClicked(e) {
         updateGameBoard(e);
@@ -37,7 +35,6 @@
     }
 
     function resetGame() {
-        gameboard.resetBoard();
         updateMessage();
         enableAllBtn();
     }
@@ -46,6 +43,7 @@
         $cells.forEach((cell) => cell.disabled = false);
     }
 
+    Observer.connect('resetBtnClicked', resetGame);
     updateMessage();
 
 })();

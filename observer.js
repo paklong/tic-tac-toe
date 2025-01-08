@@ -22,3 +22,11 @@ const Observer = (function () {
         connect, disconnect, emit
     };
 })();
+
+
+const eventBinder = (function () {
+
+    const $resetBtn = document.querySelector('.resetBtn');
+
+    $resetBtn.addEventListener('click', () => Observer.emit('resetBtnClicked'));
+})();
