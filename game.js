@@ -1,18 +1,28 @@
 (function game() {
-    const player1 = createPlayer('john', 'x');
-    const player2 = createPlayer('Kelvin', 'o');
 
-    const player = [player1, player2];
-
+    let player = [];
     let whoIsTheTurnNow = 0;
 
     //cache dom
     const $cells = document.querySelectorAll('.cell');
     const $message = document.querySelector('.message');
+    const $player1 = document.querySelector('#player1');
+    const $player2 = document.querySelector('#player2');
 
     //binding
     Observer.connect('cellClicked', updateGameBoard);
     Observer.connect('resetClicked', resetGame);
+
+    $player1.addEventListener('input', updateName);
+    $player2.addEventListener('input', updateName);
+
+    function updateName() {
+        const player1 = createPlayer(`${$player1.value}`, 'x');
+        const player2 = createPlayer(`${$player2.value}`, 'O');
+        player = [player1, player2];
+        updateMessage();
+        Observer.emit('resetClicked');
+    }
 
 
     function updateGameBoard({ targetX, targetY, cell }) {
@@ -40,6 +50,7 @@
     }
 
 
-    updateMessage();
+
+    updateName();
 
 })();

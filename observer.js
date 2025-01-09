@@ -36,4 +36,6 @@ const eventBinder = (function () {
             Observer.emit('cellClicked', { targetX, targetY, cell: e.target });
         }
     ));
+
+
 })();

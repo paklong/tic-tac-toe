@@ -3,10 +3,15 @@ h2 {
     text-align: center;
 }
 
-.container {
+.container,
+.player-names {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.player-names {
+    gap: 50px;
 }
 
 .gameboard {
